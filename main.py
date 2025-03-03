@@ -13,8 +13,15 @@ wait=WebDriverWait(driver, 10)
 shop_btn = driver.find_element(By.XPATH, "//a[normalize-space()='Shop']")
 shop_btn.click()
 
-add_cart = driver.find_element(By.XPATH, "//app-card-list[@class='row']/app-card[1]/div/div[@class='card-footer']/button")
-add_cart.click()
+products=driver.find_elements(By.XPATH, "//div[@class='card h-100']")
+
+for product in products:
+    title= product.find_element(By.XPATH, "div/h4/a")
+    print(title.text)
+    if title.text == "Blackberry":
+        checkOut= product.find_element(By.XPATH, "div/button")
+        checkOut.click()
+        break
 
 checkout_btn= driver.find_element(By.XPATH, "//a[contains(text(), 'Checkout')]")
 checkout_btn.click()
